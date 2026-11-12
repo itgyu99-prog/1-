@@ -14,7 +14,7 @@
 <script>
 'use strict';
 const CONFIG={supabaseUrl:'https://oszieptkncmnkqbsqdfv.supabase.co',supabaseAnonKey:'sb_publishable_25rVSnWIntjdKbSqnUfehw_VC6d83NL'};
-const MODES={beginner:{name:'normal',count:20,cols:4,rows:5},intermediate:{name:'intermediate',count:40,cols:5,rows:8},advanced:{name:'expert',count:60,cols:6,rows:10}};
+const MODES={beginner:{name:'normal',count:20,cols:4,rows:5},intermediate:{name:'intermediate',count:30,cols:5,rows:6},advanced:{name:'expert',count:50,cols:5,rows:10}};
 const $=id=>document.getElementById(id);
 const sino=['','일','이','삼','사','오','육','칠','팔','구'];const nativeUnit=['','하나','둘','셋','넷','다섯','여섯','일곱','여덟','아홉'];const nativeTens=['','열','스물','서른','마흔','쉰','예순','일흔','여든'];
 function sinoName(n){if(n<10)return sino[n];let t=Math.floor(n/10),u=n%10;return(t===1?'십':sino[t]+'십')+(u?sino[u]:'')}
@@ -378,9 +378,9 @@ const COPY={
     "お問い合わせ"
   ],
   "aboutBody": [
-    "1일하나는 숫자를 순서대로 찾는 무료 브라우저 게임입니다. 일반 20개, 중급 40개, 익스퍼트 60개에 시간 제한 없이 도전할 수 있습니다.",
-    "One a Day is a free browser game about finding numbers in order. Play Normal (20), Intermediate (40), or Expert (60) with no time limit.",
-    "いちにちひとつは数字を順番に探す無料ブラウザーゲームです。ノーマル（20）、中級（40）、エキスパート（60）を時間制限なしで遊べます。"
+    "1일하나는 숫자를 순서대로 찾는 무료 브라우저 게임입니다. 일반 20개, 중급 30개, 익스퍼트 50개에 시간 제한 없이 도전할 수 있습니다.",
+    "One a Day is a free browser game about finding numbers in order. Play Normal (20), Intermediate (30), or Expert (50) with no time limit.",
+    "いちにちひとつは数字を順番に探す無料ブラウザーゲームです。ノーマル（20）、中級（30）、エキスパート（50）を時間制限なしで遊べます。"
   ],
   "privacyBody": [
     "개인정보처리방침 초안입니다. 닉네임, 게임 기록, 등록 시각은 기록 관리 및 공개 랭킹에 사용됩니다. 기기 확인용 토큰은 브라우저에 저장되고 서버에는 검증용 해시가 저장됩니다. 저장 및 호스팅에는 Supabase와 Netlify를 사용합니다. 보유·삭제, 광고·쿠키, 운영자 연락처 및 시행일은 확정이 필요합니다.",
