@@ -74,11 +74,10 @@ button:focus-visible, input:focus-visible { outline: 3px solid #813a65; outline-
   box-shadow: 0 7px #bc91a6, 0 16px 50px #3d223e40;
 }
 #guideDialog::backdrop { background: #42294180; }
-.guide-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.guide-top { margin-bottom: 12px; }
 .guide-top h2 { margin: 0; font-size: clamp(19px, 4.6vw, 25px); }
-.guide-top button { flex-shrink: 0; }
 #guideDialog p { line-height: 1.55; }
-#guideHideToday { width: 100%; }
+.guide-actions { margin-top: 14px; }
 .example { margin: 14px 0; padding: 12px; background: #f6eddd; border-radius: 15px; text-align: center; }
 .example-board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 245px; margin: auto; }
 .example-board span { position: relative; display: grid; place-items: center; min-height: 34px; background: var(--paper); border: 1px solid var(--line); border-radius: 9px; }
