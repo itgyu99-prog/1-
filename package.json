@@ -1,0 +1,1 @@
+{"name":"oneilh-number-challenge","version":"1.0.0","private":true,"description":"1일하나 숫자 찾기 게임","scripts":{"start":"npx serve ."}}
