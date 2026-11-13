@@ -57,10 +57,39 @@
 .progress { background: #eadce6; flex-shrink: 0; }
 .progress > div { background: #a55385; }
 .tile { background: #f7e1b9; border-color: #ccad83; color: var(--ink); }
+.tile { position: relative; transform-origin: center; }
 .tile:nth-child(3n + 2) { background: #dcebc9; border-color: #a8bd99; }
 .tile:nth-child(3n + 3) { background: #eee1f6; border-color: #c8b3d6; }
 .tile.done:nth-child(n) { background: #f4eee6; border-color: #eee5dc; }
+.tile.clearing { z-index: 2; pointer-events: none; animation: tile-pop 380ms cubic-bezier(.2,.8,.25,1) forwards; }
+.tile.clearing::before, .tile.clearing::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.tile.clearing::before { inset: 13%; border: 2px solid #fff9; border-radius: 10px; animation: tile-ring 380ms ease-out forwards; }
+.tile.clearing::after {
+  background:
+    radial-gradient(circle, #fff 0 2px, transparent 2.8px) 12% 25% / 8px 8px no-repeat,
+    radial-gradient(circle, #d89854 0 2px, transparent 2.8px) 85% 19% / 8px 8px no-repeat,
+    radial-gradient(circle, #fff 0 2px, transparent 2.8px) 21% 82% / 8px 8px no-repeat,
+    radial-gradient(circle, #b979a0 0 2px, transparent 2.8px) 88% 76% / 8px 8px no-repeat;
+  animation: tile-sparks 380ms ease-out forwards;
+}
 .tile.wrong { animation: wrong-tile-fade 1s ease-out; }
+
+@keyframes tile-pop {
+  0% { transform: scale(1); opacity: 1; }
+  24% { transform: scale(1.06) rotate(-1.5deg); opacity: 1; }
+  58% { transform: scale(.96) rotate(1deg); opacity: .9; }
+  100% { transform: translate(3px, -10px) scale(.72) rotate(3deg); opacity: 0; }
+}
+@keyframes tile-ring {
+  0% { transform: scale(.65); opacity: 0; }
+  25% { opacity: .75; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+@keyframes tile-sparks {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translateY(-5px) scale(1.2); opacity: 0; }
+}
 
 @keyframes wrong-tile-fade {
   0%, 12% { background-color: #f47980; border-color: #b44150; color: #481822; }
@@ -68,6 +97,10 @@
 .game-panel { min-height: 350px; }
 .account-form, .result-actions { flex-wrap: wrap; }
 button:focus-visible, input:focus-visible { outline: 3px solid #813a65; outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tile.clearing, .tile.clearing::before, .tile.clearing::after { animation-duration: 1ms; }
+}
 
 #guideDialog {
   width: min(440px, calc(100% - 28px));
