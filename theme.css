@@ -88,3 +88,176 @@ button:focus-visible, input:focus-visible { outline: 3px solid #813a65; outline-
 .example-board .chosen { background: #e2ebcb; border-color: #839972; font-weight: 800; }
 .example-board i { position: absolute; top: 0; right: 4px; color: #40573a; font-size: 12px; font-style: normal; }
 .example figcaption { margin-top: 8px; font-size: 13px; }
+
+.board-wrap {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+.mascot {
+  --gutter: max(16px, calc((100vw - 640px) / 2 + 22px));
+  --sprite: clamp(38px, calc(var(--gutter) * 1.15), 128px);
+  position: absolute;
+  left: 100%;
+  top: 0;
+  bottom: 0;
+  width: min(var(--gutter), 155px);
+  pointer-events: none;
+}
+.mascot-cast {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  overflow: hidden;
+  container-type: size;
+}
+.mascot-sprite {
+  position: relative;
+  flex: none;
+  width: min(var(--sprite), 24cqh);
+  aspect-ratio: 1;
+  margin-left: -26%;
+  transform-origin: 45% 75%;
+}
+.mascot-body, .mascot-body img, .mascot-expression {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.mascot-body {
+  animation: mascot-breathe 3.6s ease-in-out infinite;
+}
+.mascot-sprite:nth-child(even) .mascot-body { animation-delay: -1.4s; }
+.mascot-expression { overflow: visible; }
+.mascot-expression path {
+  fill: none;
+  stroke: #30302e;
+  stroke-width: 2.3;
+  stroke-linecap: round;
+}
+.mascot-expression .mascot-open-mouth { fill: #30302e; }
+.mascot-happy, .mascot-sad, .mascot-paw, .mascot-sparkles, .mascot-drop {
+  visibility: hidden;
+}
+.mascot[data-state="idle"] .mascot-happy {
+  visibility: visible;
+  animation: mascot-blink 5.4s step-end infinite;
+}
+.mascot[data-state="idle"] .mascot-open-mouth { display: none; }
+.mascot[data-state="success"] .mascot-happy,
+.mascot[data-state="complete"] .mascot-sprite:nth-child(2) .mascot-happy,
+.mascot[data-state="fail"] .mascot-sad,
+.mascot[data-state="success"] .mascot-sparkles,
+.mascot[data-state="complete"] .mascot-sparkles,
+.mascot[data-state="fail"] .mascot-drop { visibility: visible; }
+.mascot[data-state="success"] .mascot-sprite,
+.mascot[data-state="complete"] .mascot-sprite:nth-child(2) {
+  animation: mascot-pop .55s both;
+}
+.mascot[data-state="fail"] .mascot-sprite { animation: mascot-flinch .46s both; }
+.mascot[data-state="fail"] .mascot-body { animation: none; transform: translateY(3%) rotate(-5deg); }
+.mascot-paw {
+  position: absolute;
+  top: 59%;
+  width: 12%;
+  height: 17%;
+  border: 2px solid #30302e;
+  border-radius: 55%;
+  background: white;
+  transform-origin: bottom center;
+}
+.mascot-paw-left { left: 20%; }
+.mascot-paw-right { right: 19%; }
+.mascot[data-state="success"] .mascot-paw-right,
+.mascot[data-state="complete"] .mascot-sprite:nth-child(2) .mascot-paw {
+  visibility: visible;
+  animation: mascot-wave .32s ease-in-out 4 alternate;
+}
+.mascot[data-state="complete"] .mascot-sprite:nth-child(2) .mascot-paw { top: 35%; }
+.mascot-sparkles, .mascot-drop {
+  position: absolute;
+  top: 24%;
+  left: 38%;
+}
+.mascot-sparkles { color: #b87819; font-size: clamp(9px, 2vw, 22px); white-space: nowrap; }
+.mascot-drop {
+  width: 8px;
+  height: 11px;
+  background: #78b9de;
+  border-radius: 70% 30% 60% 60%;
+  transform: rotate(24deg);
+}
+.mascot-speech {
+  position: absolute;
+  top: 42%;
+  left: 3px;
+  width: min(145px, calc(var(--gutter) - 8px));
+  padding: 6px 8px;
+  border: 1px solid #d6daca;
+  border-radius: 12px;
+  background: #fffdf6;
+  color: #37392f;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.35;
+  transform-origin: left center;
+}
+.mascot-speech:empty { visibility: hidden; }
+.mascot:not([data-state="idle"]) .mascot-speech { animation: mascot-bubble .34s both; }
+.mascot[data-state="fail"] .mascot-speech { animation: mascot-bubble .34s both, mascot-shake .24s .34s; }
+.mascot.mascot-leaving .mascot-speech { animation: mascot-dismiss .22s both; }
+
+@keyframes mascot-breathe { 50% { transform: translateY(-3%) scaleY(1.02); } }
+@keyframes mascot-blink {
+  0%, 94%, 100% { opacity: 0; }
+  95%, 97% { opacity: 1; }
+}
+@keyframes mascot-pop {
+  0% { transform: scale(1.12, .83); }
+  42% { transform: translate(14%, -9%) scale(.9, 1.16); }
+  75% { transform: translate(11%, 1%) scale(1.08, .95); }
+  100% { transform: translateX(10%); }
+}
+@keyframes mascot-flinch {
+  24% { transform: translateX(-18%) rotate(-10deg) scaleY(.82); }
+  58% { transform: translateX(4%) rotate(3deg); }
+}
+@keyframes mascot-wave {
+  from { transform: translateY(-25%) rotate(-24deg); }
+  to { transform: translateY(-45%) rotate(26deg); }
+}
+@keyframes mascot-bubble {
+  from { opacity: 0; scale: .65; }
+  68% { opacity: 1; scale: 1.08; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes mascot-shake { 25% { rotate: -4deg; } 75% { rotate: 4deg; } }
+@keyframes mascot-dismiss { to { opacity: 0; scale: .85; } }
+
+@media (max-width: 780px) {
+  .mascot-speech { top: auto; bottom: -24px; left: auto; right: 4px; width: max-content; max-width: 180px; }
+  .mascot-sparkles { left: 0; font-size: 9px; letter-spacing: -2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mascot *, .mascot:not([data-state="idle"]) .mascot-speech { animation: none !important; }
+  .mascot[data-state="idle"] .mascot-happy { visibility: hidden; }
+}
+
+@media (max-width: 780px) {
+  .mascot-sprite { margin-left: -60%; }
+  .mascot-speech { bottom: -27px; }
+}
+.mascot[data-state="complete"] .mascot-sprite:nth-child(2) {
+  animation-name: mascot-celebrate;
+}
+@keyframes mascot-celebrate {
+  0% { transform: scale(1.14, .78); }
+  36% { transform: translate(17%, -18%) scale(.9, 1.24); }
+  67% { transform: translate(10%, 2%) scale(1.13, .9); }
+  100% { transform: translateX(11%); }
+}
