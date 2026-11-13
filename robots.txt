@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sparkling-torrone-7a8808.netlify.app/sitemap.xml
+Sitemap: https://oneilhahana-game.netlify.app/sitemap.xml
