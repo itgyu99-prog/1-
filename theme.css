@@ -261,3 +261,37 @@ button:focus-visible, input:focus-visible { outline: 3px solid #813a65; outline-
   67% { transform: translate(10%, 2%) scale(1.13, .9); }
   100% { transform: translateX(11%); }
 }
+
+/* A compact group peeks out together from the board edge. */
+.mascot-cast { display: block; }
+.mascot-sprite {
+  position: absolute;
+  width: min(calc(var(--sprite) * .8), 32cqh);
+  margin-left: 0;
+  left: calc(var(--sprite) * -.19);
+  top: 50%;
+}
+.mascot-sprite:nth-child(1) { margin-top: calc(var(--sprite) * -.72); }
+.mascot-sprite:nth-child(2) {
+  left: calc(var(--sprite) * .22);
+  margin-top: calc(var(--sprite) * -.58);
+}
+.mascot-sprite:nth-child(3) { margin-top: calc(var(--sprite) * -.24); }
+.mascot-sprite:nth-child(4) {
+  left: calc(var(--sprite) * .18);
+  margin-top: calc(var(--sprite) * -.13);
+}
+.mascot[data-state="idle"] .mascot-body { animation-name: mascot-murmur; }
+.mascot-sprite:nth-child(3) .mascot-body { animation-delay: -.7s; }
+.mascot-sparkles, .mascot-drop { top: 34%; }
+.mascot-speech { top: 66%; }
+@keyframes mascot-murmur {
+  0%, 28%, 66%, 100% { transform: translateY(0) rotate(0); }
+  37% { transform: translateY(-4%) rotate(-4deg); }
+  48% { transform: translateY(-1%) rotate(3deg); }
+}
+@media (max-width: 780px) {
+  .mascot-sprite { left: -8px; }
+  .mascot-sprite:nth-child(even) { left: -4px; }
+  .mascot-speech { top: auto; }
+}
