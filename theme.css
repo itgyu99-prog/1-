@@ -60,7 +60,11 @@
 .tile:nth-child(3n + 2) { background: #dcebc9; border-color: #a8bd99; }
 .tile:nth-child(3n + 3) { background: #eee1f6; border-color: #c8b3d6; }
 .tile.done:nth-child(n) { background: #f4eee6; border-color: #eee5dc; }
-.tile.wrong:nth-child(n) { background: #f9c7cb; border-color: #a84e65; color: #782843; }
+.tile.wrong { animation: wrong-tile-fade 1s ease-out; }
+
+@keyframes wrong-tile-fade {
+  0%, 12% { background-color: #f47980; border-color: #b44150; color: #481822; }
+}
 .game-panel { min-height: 350px; }
 .account-form, .result-actions { flex-wrap: wrap; }
 button:focus-visible, input:focus-visible { outline: 3px solid #813a65; outline-offset: 3px; }
