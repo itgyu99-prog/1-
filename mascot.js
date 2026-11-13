@@ -23,8 +23,6 @@ for (const [index, face] of mascotFaces.entries()) {
           <path d="M${face.x - 13} ${face.y - 7}l5 -3m16 0l5 3M${x - 4} ${y + 2}q4 -5 8 0" />
         </g>
       </svg>
-      <span class="mascot-paw mascot-paw-left"></span>
-      <span class="mascot-paw mascot-paw-right"></span>
     </span>`;
   mascot.querySelector('.mascot-cast').append(sprite);
 }

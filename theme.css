@@ -295,3 +295,32 @@ button:focus-visible, input:focus-visible { outline: 3px solid #813a65; outline-
   .mascot-sprite:nth-child(even) { left: -4px; }
   .mascot-speech { top: auto; }
 }
+
+/* Keep the four mascots together at the board's lower-right corner. */
+.mascot {
+  top: auto;
+  bottom: 2px;
+  height: clamp(104px, 18vh, 180px);
+}
+.mascot-cast { overflow: visible; }
+.mascot-sprite {
+  --sprite: clamp(48px, 8vw, 92px);
+  width: min(var(--sprite), 48cqh);
+  left: 0;
+  top: 0;
+  margin: 0;
+  transform: scaleX(-1);
+}
+.mascot-sprite:nth-child(1) { top: 0; left: 0; margin: 0; }
+.mascot-sprite:nth-child(2) { top: 0; left: 38px; margin: 0; }
+.mascot-sprite:nth-child(3) { top: 42px; left: 0; margin: 0; }
+.mascot-sprite:nth-child(4) { top: 42px; left: 38px; margin: 0; }
+.mascot-paw { display: none !important; }
+.mascot-speech { top: auto; bottom: 100%; left: 4px; }
+@media (max-width: 780px) {
+  .mascot { height: clamp(88px, 15vh, 126px); }
+  .mascot-sprite { --sprite: clamp(38px, 11vw, 54px); }
+  .mascot-sprite:nth-child(2) { left: 30px; }
+  .mascot-sprite:nth-child(3) { top: 32px; }
+  .mascot-sprite:nth-child(4) { top: 32px; left: 30px; }
+}
